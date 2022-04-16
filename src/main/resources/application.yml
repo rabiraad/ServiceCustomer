@@ -1,0 +1,33 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/customer_management_system?useSSL=false
+    username: postgres
+    password: dbpass
+    driverClassName: org.postgresql.Driver
+    
+  jpa:
+    hibernate.ddl-auto: update
+    show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQL81Dialect
+        format-sql: true
+      
+  application:
+    name: CUSTOMER-SERVICE
+      
+
+server:
+  port:
+    9002
+    
+eureka:
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://localhost:8761/eureka/
+    instance:
+      hostname: localhost
+    
+  
