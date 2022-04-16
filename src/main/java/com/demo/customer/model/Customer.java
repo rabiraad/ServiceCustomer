@@ -6,9 +6,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "customers")
+@NoArgsConstructor
+@Getter
+@Setter
 public class Customer {
 
   @Id
@@ -24,44 +30,10 @@ public class Customer {
   @Column(name = "phone_number")
   private String phoneNumber;
 
-  public Customer() {}
-
   public Customer(String firstName, String lastName, String phoneNumber) {
     super();
     this.firstName = firstName;
     this.lastName = lastName;
-    this.phoneNumber = phoneNumber;
-  }
-
-  public long getId() {
-    return id;
-  }
-
-  public void setId(long id) {
-    this.id = id;
-  }
-
-  public String getFirstName() {
-    return firstName;
-  }
-
-  public void setFirstName(String firstName) {
-    this.firstName = firstName;
-  }
-
-  public String getLastName() {
-    return lastName;
-  }
-
-  public void setLastName(String lastName) {
-    this.lastName = lastName;
-  }
-
-  public String getPhoneNumber() {
-    return phoneNumber;
-  }
-
-  public void setPhoneNumber(String phoneNumber) {
     this.phoneNumber = phoneNumber;
   }
 }
