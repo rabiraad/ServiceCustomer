@@ -4,6 +4,7 @@ import com.demo.customer.exception.CustomerNotFoundException;
 import com.demo.customer.model.Customer;
 import com.demo.customer.repository.CustomerRepository;
 import com.demo.customer.service.CustomerService;
+import io.swagger.annotations.ApiOperation;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -29,16 +30,22 @@ public class CustomerController {
   @Autowired private CustomerService customerService;
 
   @GetMapping("/customers")
+  @ApiOperation(value = "Returns a list of all customers in the database")
   public List<Customer> getAllCustomers() {
     return customerRepository.findAll();
   }
 
   @PostMapping("/customers")
+  @ApiOperation(
+      value =
+          "Creates a new customer after validating his phone number\n"
+              + "Returns the created customer")
   public Customer addCustomer(@RequestBody Customer customer) {
     return customerService.saveCustomer(customer);
   }
 
   @GetMapping("/customers/{id}")
+  @ApiOperation(value = "Returns customer with id: id")
   public ResponseEntity<Customer> getCustomerById(@PathVariable Long id) {
     Customer customer =
         customerRepository
@@ -49,6 +56,10 @@ public class CustomerController {
   }
 
   @PutMapping("/customers/{id}")
+  @ApiOperation(
+      value =
+          "Updates customer with id: id after validating the updated phone number\n"
+              + "Returns the updated customer")
   public ResponseEntity<Customer> updateCustomer(
       @PathVariable Long id, @RequestBody Customer updatedCustomer) {
     Customer customer =
@@ -64,6 +75,11 @@ public class CustomerController {
   }
 
   @DeleteMapping("/customers/{id}")
+  @ApiOperation(
+      value =
+          "Deletes customer with id: id\n"
+              + "Returns a boolean indicating whether the customer was successfully deleted and a message"
+              + "containing the id of the deleted customer")
   public ResponseEntity<Map<String, Boolean>> deleteCustomer(@PathVariable Long id) {
     Customer customer =
         customerRepository
