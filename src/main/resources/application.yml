@@ -14,7 +14,7 @@ spring:
         format-sql: true
       
   application:
-    name: CUSTOMER-SERVICE
+    name: SERVICE-CUSTOMER
       
 
 server:

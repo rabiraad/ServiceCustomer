@@ -20,7 +20,7 @@ public class CustomerService {
     log.debug("CustomerService -- saveCustomer: id= " + customer.getId());
     PhoneNumberDetails details =
         restTemplate.getForObject(
-            "http://localhost:9001/validators/" + customer.getPhoneNumber(),
+            "http://PHONE-VALIDATOR/validators/" + customer.getPhoneNumber(),
             PhoneNumberDetails.class);
     return customerRepository.save(customer);
   }
