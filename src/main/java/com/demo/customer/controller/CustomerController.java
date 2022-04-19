@@ -62,15 +62,7 @@ public class CustomerController {
               + "Returns the updated customer")
   public ResponseEntity<Customer> updateCustomer(
       @PathVariable Long id, @RequestBody Customer updatedCustomer) {
-    Customer customer =
-        customerRepository
-            .findById(id)
-            .orElseThrow(
-                () -> new CustomerNotFoundException("Customer with id: " + id + " not found"));
-    customer.setFirstName(updatedCustomer.getFirstName());
-    customer.setLastName(updatedCustomer.getLastName());
-    customer.setPhoneNumber(updatedCustomer.getPhoneNumber());
-    Customer savedCustomer = customerRepository.save(customer);
+    Customer savedCustomer = customerService.updateCustomer(updatedCustomer, id);
     return ResponseEntity.ok(savedCustomer);
   }
 
